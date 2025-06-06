@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -23,6 +23,7 @@ a:hover {
 }
 
 body {
+  flex-direction: column;
   margin: 0;
   display: flex;
   place-items: center;
