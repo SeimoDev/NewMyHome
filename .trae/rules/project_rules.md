@@ -1,0 +1,2 @@
+- 这是一个 Angular 框架的项目，所以你应该完全遵守 Angular 的开发规范
+- 有任何开发的需求请阅读官方文档 https://v2.angular.cn/docs/ts/latest/
