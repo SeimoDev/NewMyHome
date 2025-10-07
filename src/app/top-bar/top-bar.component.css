@@ -1,0 +1,93 @@
+/* 备用方案：如果 backdrop-filter 仍有问题，可以使用这个更稳定的背景 */
+.top-bar-fallback {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0.85) 100%
+  );
+  /* 移除 backdrop-filter 相关属性 */
+}
+
+.top-bar {
+  background-color: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 0 16px;
+  
+  /* 渲染优化 - 强制启用硬件加速 */
+  transform: translate3d(0, 0, 0);
+  will-change: backdrop-filter, transform;
+  backface-visibility: hidden;
+  
+  /* 确保平滑渲染 */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* 额外的渲染优化 */
+  contain: layout style paint;
+  isolation: isolate;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    z-index: 2;
+}
+
+.favicon-icon {
+    width: 24px;
+    height: 24px;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.seimo {
+    color: black;
+}
+
+.os {
+    color: #009AEA;
+}
+
+.nav-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(0, 154, 234, 0.1);
+    color: #009AEA;
+    transform: translateY(-1px);
+}
+
+.spacer {
+    flex: 1;
+}

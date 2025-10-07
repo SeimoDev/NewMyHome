@@ -1,0 +1,205 @@
+/* 应用容器 - 启用全屏滚动，与 body 完全重合 */
+.app-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh; /* 完整视口高度，与 body 完全重合 */
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+/* 页面区域 - 每个页面占满整个屏幕高度 */
+.page-section {
+  height: 100vh; /* 完整视口高度 */
+  scroll-snap-align: start;
+  position: relative;
+  box-sizing: border-box; /* 确保内边距不会增加总高度 */
+}
+
+/* 主内容页面 */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 64px; /* 只为固定的 TopBar 留出空间 */
+  box-sizing: border-box; /* 确保 padding 不会增加总高度 */
+}
+
+/* 空白页面 */
+.blank-page {
+  background-color: white; /* 白色背景 */
+  position: relative; /* 为绝对定位的子元素提供参考 */
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding-top: 15vh; /* 避开固定的 TopBar (64px + 20px) */
+  padding-left: 15vh; /* 左边距 */
+}
+
+/* 进入动画关键帧 */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+.center-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+  /* 初始状态：隐藏 */
+  opacity: 0;
+  transform: translateY(30px);
+  filter: blur(5px);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out, filter 0.5s ease-out;
+}
+
+/* 加载完成后的动画状态 */
+.center-container.loaded {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.logo-image {
+  width: 120px;
+  height: 120px;
+  object-fit: contain;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: bold;
+  margin: 0;
+  color: white;
+}
+
+.subtitle {
+  font-size: 24px;
+  margin: 0;
+  color: white;
+  font-weight: 300;
+}
+
+/* 第二页内容样式 */
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.text-line-1 {
+  font-size: 72px;
+  font-weight: bold;
+  color: #000000; /* 黑色 */
+  margin: 0;
+  line-height: 1.2;
+}
+
+.text-line-2 {
+  font-size: 72px;
+  font-weight: bold;
+  color: #009AEA; /* 蓝色 */
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* 居中图片样式 */
+.center-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 80%; /* 初始大小设为 80% */
+  max-height: 80%; /* 初始大小设为 80% */
+  object-fit: contain;
+  z-index: 1; /* 确保图片在文字下方 */
+  transition: max-width 0.1s ease-out, max-height 0.1s ease-out; /* 添加平滑过渡 */
+}
+
+/* 技术 logo 容器样式 */
+.tech-logos {
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  z-index: 2; /* 确保在图片上方 */
+}
+
+/* 技术图标的初始状态：模糊且透明 */
+.tech-icon {
+  font-size: 40px;
+  filter: blur(50px);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s ease-out;
+}
+
+/* 技术图标的最终状态：清晰且不透明 */
+.tech-icon.animate-in {
+  filter: blur(0px);
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/* 技术 logo 图标样式 - 移除冲突的样式 */
+.tech-logos i.tech-icon:hover {
+  transform: scale(1.2) translateY(0px);
+}
+
+/* 省略号样式 */
+.ellipsis {
+  font-size: 40px;
+  color: #000000;
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+/* 第三页样式 */
+.third-page {
+  background-color: white; /* 白色背景 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 64px 20px 20px; /* 顶部留出TopBar空间 */
+  box-sizing: border-box;
+}
+
+/* 第三页内容容器 */
+.third-page-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+/* 第三页标题 */
+.third-page-title {
+  font-size: 48px;
+  font-weight: bold;
+  color: #000000;
+  margin: 0;
+}
+
+/* 第三页副标题 */
+.third-page-subtitle {
+  font-size: 24px;
+  color: #666666;
+  margin: 0;
+  font-weight: 300;
+}
